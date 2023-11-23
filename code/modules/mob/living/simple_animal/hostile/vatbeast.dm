@@ -28,8 +28,7 @@
 
 /mob/living/simple_animal/hostile/vatbeast/Initialize(mapload)
 	. = ..()
-	var/datum/action/cooldown/tentacle_slap/slapper = new(src)
-	slapper.Grant(src)
+	GRANT_ACTION(/datum/action/cooldown/tentacle_slap)
 
 	add_cell_sample()
 	AddComponent(/datum/component/tameable, list(/obj/item/food/fries, /obj/item/food/cheesyfries, /obj/item/food/cornchips, /obj/item/food/carrotfries), tame_chance = 30, bonus_tame_chance = 0, after_tame = CALLBACK(src, PROC_REF(tamed)))
@@ -51,7 +50,7 @@
 	overlay_icon_state = "bg_revenant_border"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "tentacle_slap"
-	check_flags = AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 	cooldown_time = 12 SECONDS
 	melee_cooldown_time = 0 SECONDS
 	click_to_activate = TRUE
